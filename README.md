@@ -44,7 +44,7 @@ Name|Size in bytes|Description
 Magic Number|2|"PG" (0x5047)
 PTS|4|Presentation Timestamp
 DTS|4|Decoding Timestamp
-Segment Type|1|0x14: PDS <br> 0x15: ODS <br> 0x16: PCS <br> 0x17: WDS <br> 0x80: END
+Segment Type|1|0x14: Palette Definition Segment <br> 0x15: Object Definition Segment  <br> 0x16: Presentation Composition Segment <br> 0x17: Window Definition Segment <br> 0x80: End of Display Set Segment
 Segment Size|2|Size of the segment
 
 
