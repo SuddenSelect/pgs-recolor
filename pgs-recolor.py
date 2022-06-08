@@ -32,11 +32,15 @@ class PGSPaletteGrayscaler:
             yield segment_type, segment
 
     @staticmethod
-    def __transform_segment(segment):
+    def __transform_segment(segment, brighten_factor=0.7):
         modified_segment = segment[:15]
         for palette in range(15, len(segment), 5):
             id_y_cr_cb_alpha = bytearray(segment[palette:palette+5])
             id_y_cr_cb_alpha[2:4] = [128, 128]  # changing color to grayscale in YCrCb color space
+            if id_y_cr_cb_alpha[1] < 128:
+                id_y_cr_cb_alpha[1] = int(id_y_cr_cb_alpha[1] * brighten_factor)
+            else:
+                id_y_cr_cb_alpha[1] = int(255 - (255 - id_y_cr_cb_alpha[1]) * brighten_factor)
             modified_segment += id_y_cr_cb_alpha
         if len(segment) != len(modified_segment):
             raise Exception('panic - different size of modified segment')
